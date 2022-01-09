@@ -3,10 +3,10 @@
 Branches: v6, v5
 
 What I expect (0.5.0):
-[release 0.5.0)(https://i.imgur.com/ueLmRkZ.png)
+![release 0.5.0](https://i.imgur.com/ueLmRkZ.png)
 
 What actually happens (0.6.0):
-[release 0.6.0](https://i.imgur.com/0hwoeTV.png)
+![release 0.6.0](https://i.imgur.com/0hwoeTV.png)
 
 System
 ```
