@@ -8,10 +8,25 @@ use bevy::{
     },
 };
 
+// use bevy::{
+//     prelude::*,
+//     render::{
+//         mesh::Indices,
+//         pipeline::PrimitiveTopology,
+//         wireframe::{Wireframe, WireframePlugin},
+//     },
+//     wgpu::{WgpuFeature, WgpuFeatures, WgpuOptions},
+// };
+
 fn main() {
     App::new()
+        // App::build()
         .insert_resource(WgpuOptions {
             features: WgpuFeatures::POLYGON_MODE_LINE,
+            // features: WgpuFeatures {
+            //     // The Wireframe requires NonFillPolygonMode feature
+            //     features: vec![WgpuFeature::NonFillPolygonMode],
+            // },
             ..Default::default()
         })
         .insert_resource(Msaa { samples: 4 })
@@ -26,6 +41,7 @@ fn setup(
     mesh_materials: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
+    // custom mesh square
     commands
         .spawn_bundle(PbrBundle {
             mesh: create_mesh(mesh_materials),
@@ -33,6 +49,20 @@ fn setup(
             ..Default::default()
         })
         .insert(Wireframe);
+    // light
+    commands.spawn_bundle(PointLightBundle {
+        point_light: PointLight {
+            intensity: 1500.0,
+            ..Default::default()
+        },
+        transform: Transform::from_xyz(4.0, 8.0, 4.0),
+        ..Default::default()
+    });
+    // commands.spawn_bundle(LightBundle {
+    //     transform: Transform::from_xyz(4.0, 8.0, 4.0),
+    //     ..Default::default()
+    // });
+    // camera
     commands.spawn_bundle(PerspectiveCameraBundle {
         transform: Transform::from_xyz(-2.0, 2.5, 5.0).looking_at(Vec3::ZERO, Vec3::Y),
         ..Default::default()
